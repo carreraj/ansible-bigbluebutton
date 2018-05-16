@@ -23,6 +23,12 @@
   tags:
     - update_apt_cache
 
+- name: Install randomness generator
+  apt: name=haveged state=present
+  when: virtualized == True
+  tags:
+    - virtualized-dependencies
+
 - name: Install BigBluebutton required packages
   apt: name={{ item }} state=present
   with_items:
